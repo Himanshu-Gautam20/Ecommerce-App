@@ -1,0 +1,16 @@
+{
+  "name": "ecommerce-app",
+  "version": "1.0.0",
+  "description": "ecommerce rest api",
+  "main": "server.js",
+  "scripts": {
+    "start": "node sever.js"
+  },
+  "keywords": [],
+  "author": "Himanshu Gautam",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "express": "^5.1.0"
+  }
+}
