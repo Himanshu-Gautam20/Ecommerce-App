@@ -3,7 +3,7 @@ import Layout from './../components/Layout/Layout';
 
 function HomePage() {
   return (
-    <Layout>
+    <Layout title={'Ecommerce-App - Home'}>
       <h1>Home Page</h1>
     </Layout>
   )

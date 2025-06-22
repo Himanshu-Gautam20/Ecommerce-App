@@ -3,7 +3,7 @@ import Layout from './../components/Layout/Layout';
 
 const About = () => {
   return (
-    <Layout>
+    <Layout title={'Ecommerce-App - About Us'}>
       <h1>About</h1>
     </Layout>
   )
