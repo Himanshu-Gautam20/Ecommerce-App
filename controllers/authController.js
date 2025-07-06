@@ -108,6 +108,67 @@ export const loginController = async (req, res) => {
   }
 };
 
+
+export const forgotPasswordController = async (req, res) => {
+  try {
+    const { email, answer, newPassword } = req.body;
+    //validations
+    if (!email) {
+      res.status(400).send({ message: "Email is Required" });
+    }
+    if (!answer) {
+      res.send({ message: "Security answer is Required" });
+    }
+    if (!newPassword) {
+      res.send({ message: "New password is Required" });
+    }
+    //check user
+    const user = await userModel.findOne({ email, answer });
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: "Wrong email or answer",
+      });
+    }
+
+    const hashed = await hashPassword(newPassword);
+    await userModel.findByIdAndUpdate(
+      user._id,
+      { password: hashed },
+    );
+    res.status(200).send({
+      success: true,
+      message: "Password reset successfully",
+    });
+    if (user.question !== question) {
+      return res.status(404).send({
+        success: false,
+        message: "Invalid security question",
+      });
+    }
+    if (user.answer !== answer) {
+      return res.status(404).send({
+        success: false,
+        message: "Invalid security answer",
+      });
+    }
+    //update password
+    const hashedPassword = await hashPassword(newPassword);
+    await userModel.findByIdAndUpdate(user._id, { password: hashedPassword });
+    res.status(200).send({
+      success: true,
+      message: "Password reset successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Something went wrong",
+      error,
+    });
+  }
+};
+
 //test controller
 export const testController = (req, res) => {
   try {
