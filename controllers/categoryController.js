@@ -95,6 +95,7 @@ export const singleCategoryController = async (req, res) => {
   }
 };
 
+
 //delete category
 export const deleteCategoryCOntroller = async (req, res) => {
   try {
