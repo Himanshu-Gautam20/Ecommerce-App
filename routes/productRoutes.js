@@ -41,4 +41,4 @@ router.get("/product-photo/:pid", productPhotoController);
 //delete rproduct
 router.delete("/product/:pid", deleteProductController);
 
-export default router; 
+export default router;
